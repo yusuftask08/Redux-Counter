@@ -11,11 +11,17 @@ export const todosSlice = createSlice({
             },
             {
                 id: 2,
-                title: 'Learn Vue'
+                title: 'Learn Vue',
+                completed: false
             }
         ],
     },
-    reducers: {}
+    reducers: {
+        addTodo: (state, action) => {
+            state.items.push(action.payload)
+        }
+    }
 })
 
+export const { addTodo } = todosSlice.actions
 export default todosSlice.reducer;

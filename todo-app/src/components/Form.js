@@ -1,12 +1,27 @@
-import React from 'react'
-
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addTodo } from '../redux/todos/todosSlice';
+import { nanoid } from '@reduxjs/toolkit'
 function Form() {
+    const dispatch = useDispatch();
+    const [title, setTitle] = useState('')
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(addTodo({ id: nanoid(), title, completed: false }))
+        setTitle('')
+    }
+
     return (
         <div>
-            <form mv-action="set(newTodo, newTodo.trim()), if(newTodo != '', add(newTodo, todo) & set(newTodo, ''))">
-                <input property="newTodo" className="new-todo"
+            <form onSubmit={handleSubmit}>
+                <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    property="newTodo"
+                    className="new-todo"
                     placeholder="What needs to be done?"
-                    autoFocus />
+                    autoFocus
+                />
             </form>
         </div>
     )

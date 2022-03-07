@@ -32,7 +32,6 @@ export const todosSlice = createSlice({
             state.items = filtered;
         },
         changeActiveFilter: (state, action) => {
-            console.log('action', action)
             state.activeFilter = action.payload;
         },
         clearCompleted: (state) => {
@@ -41,6 +40,17 @@ export const todosSlice = createSlice({
         }
     }
 })
+
+export const selectTodos = state => state.todos.items;
+export const selectFilteredTodos = (state) => {
+    if (state.todos.activeFilter === 'all') {
+        return state.todos.items;
+    }
+    return state.todos.items.filter((todo) =>
+        state.todos.activeFİlter === 'active' ? todo.completed == false : todo.completed === true
+    )
+}
+export const selectActiveFilter = (state) => state.todos.activeFilter
 
 export const { addTodo, toogle, deleteTodo, changeActiveFilter, clearCompleted } = todosSlice.actions
 export default todosSlice.reducer;

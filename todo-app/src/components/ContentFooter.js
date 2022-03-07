@@ -3,23 +3,23 @@ import React from 'react'
 function ContentFooter() {
     return (
         <div>
-            <footer class="footer">
-                <span class="todo-count">
+            <footer className="footer">
+                <span className="todo-count">
                     <strong>2</strong>{" "}
                     items left
                 </span>
-                <ul class="filters">
+                <ul className="filters">
                     <li>
-                        <a class="selected">All</a>
+                        <a href='#/' className="selected">All</a>
                     </li>
                     <li>
-                        <a>Active</a>
+                        <a href='#/'>Active</a>
                     </li>
                     <li>
-                        <a>Completed</a>
+                        <a href='#/'>Completed</a>
                     </li>
                 </ul>
-                <button class="clear-completed">
+                <button className="clear-completed">
                     Clear completed
                 </button>
             </footer>

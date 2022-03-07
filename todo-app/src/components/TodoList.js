@@ -1,10 +1,15 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { toogle } from '../redux/todos/todosSlice'
+import { toogle, deleteTodo } from '../redux/todos/todosSlice'
 function TodoList() {
     const items = useSelector(state => state.todos.items)
     const dispatch = useDispatch();
+    const handleDestroy = (id) => {
 
+        if (window.confirm('Are you sure ?')) {
+            dispatch(deleteTodo(id))
+        }
+    }
     return (
         <div>
             <ul className="todo-list">
@@ -19,7 +24,7 @@ function TodoList() {
                                     checked={item.completed}
                                 />
                                 <label>{item.title}</label>
-                                <button className="destroy"></button>
+                                <button className="destroy" onClick={() => handleDestroy(item.id)}></button>
                             </div>
                         </li>
                     ))
